@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <h1 style="text-align:center ;">Meme Generator</h1>
+    <div class="container">
+        <h1 class="title">I’ll keep this pop</h1>
+         <img  class="image" src="https://i.redd.it/1xlxa5gy3m4d1.gif" alt="">
+        <p class="author">Meme  By <span >Sherlock</span></p> 
+        <button class="genbtn" onclick="gen()"> Next Meme </button>
+    </div>
+    
+</body>
+<script>
+    
+    var memebtn = document.querySelector('.genbtn');
+    var memetitle=document.querySelector('.title');
+    var memeimg=document.querySelector('.image');
+    var authorout=document.querySelector('.author span');
+
+    function gen() {
+        memebtn.addEventListener('click', () => {
+            fetch('https://meme-api.com/gimme/wholesomememes')
+            .then((resp)=> resp.json())
+            .then((data)=>{
+              const{author,url,title}=data;
+              memetitle.textContent=title;
+              memeimg.src=url;
+              authorout.textContent=author;
+              
+            })
+
+            
+        });
+    }
+    
+    gen();
+    
+
+
+</script>
+ 
+
+
+
+
+</html>   
